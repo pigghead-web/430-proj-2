@@ -1,0 +1,44 @@
+{
+  "name": "430-proj-2",
+  "version": "1.0.0",
+  "description": "PROJECT 2 ",
+  "main": "./server/app.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "connect-redis": "^4.0.3",
+    "cookie-parser": "^1.4.4",
+    "csurf": "^1.10.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "express-session": "^1.17.0",
+    "favicon": "0.0.2",
+    "fsevents": "^1.2.9",
+    "helmet": "^3.21.2",
+    "mongoose": "^5.7.8",
+    "serve-favicon": "^2.5.0",
+    "underscore": "^1.9.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "nodemon": "^1.19.4"
+  },
+  "scripts": {
+    "test": "node ./server/app.js",
+    "nodemon": "nodemon --watch ./server ./server/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pigghead-web/430-proj-2.git"
+  },
+  "author": "JUSTIN ARMSTRONG",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/pigghead-web/430-proj-2/issues"
+  },
+  "homepage": "https://github.com/pigghead-web/430-proj-2#readme"
+}
