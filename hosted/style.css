@@ -1,0 +1,21 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: "Navigation Login Login Login" "Navigation Content Content Content" "Navigation Content Content Content";
+  width: 100%;
+}
+
+.Navigation { grid-area: Navigation; }
+
+.Login {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: "  " ". . .";
+  grid-area: Login;
+}
+
+. { grid-area: ; }
+
+.Content { grid-area: Content; }

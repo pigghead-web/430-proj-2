@@ -44,7 +44,7 @@ if (process.env.REDISCLOUD_URL) {
 }  // - END REDIS -
 
 // Pull the module router
-//const router = require('./router.js');
+const router = require('./router.js');
 
 // Setup express application
 const app = express();
@@ -101,4 +101,14 @@ app.use((err, req, res, next) => {
   
   console.log('Missing CSRF token');
   return false;
+});
+
+router(app);
+
+app.listen(port, (err) => {
+  if (err) {
+    throw err;
+  }
+  
+  console.log(`Listening on port: ${port}`);
 });
