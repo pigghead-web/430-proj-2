@@ -13,79 +13,80 @@ const keyLength = 64;
 // - SCHEMA DEFINITION -
 const AccountSchema = new mongoose.Schema({
   username: {
-    type: String,  // the type of schema
-    required: true,  // path must be set before saving can occur
-    trim: true,  // calls .trim()
-    unique: true,  // unique index created for this path
-    match: /^[A-Za-z0-9_\-.]{1,32}$/,  // RegExp, checks if value is in given array
+    type: String, // the type of schema
+    required: true, // path must be set before saving can occur
+    trim: true, // calls .trim()
+    unique: true, // unique index created for this path
+    match: /^[A-Za-z0-9_\-.]{1,32}$/, // RegExp, checks if value is in given array
   },
-  
+
   salt: {
     type: Buffer,
     required: true,
   },
-  
+
   password: {
     type: String,
     required: true,
   },
-  
+
   createdDate: {
     type: Date,
-    default: Date.now,  // Default value of SchemaType
-  }
+    default: Date.now, // Default value of SchemaType
+  },
 });
 
 // - STATICS / FUNCTIONS -
-AccountSchema.statics.toAPI = doc => ({
+AccountSchema.statics.toAPI = (doc) => ({
   username: doc.username,
   _id: doc._id,
 });
 
 const validatePassword = (doc, password, callback) => {
   const pass = doc.password;
-  
-  return crypto.pbkdf2(password, doc.salt, iterations, keyLength, 'RSA-SHA512', (err, hash) =>{
-    if(hash.toString('hex') !== pass) {
+
+  return crypto.pbkdf2(password, doc.salt, iterations, keyLength, 'RSA-SHA512', (err, hash) => {
+    if (hash.toString('hex') !== pass) {
       return callback(false);
     }
-    
+
     return callback(true);
   });
 };
 
 AccountSchema.statics.findByUsername = (name, callback) => {
   const search = {
-    name: name,
+    name,
   };
-  
+
   return AccountModel.findOne(search, callback);
 };
 
 AccountSchema.statics.generateHash = (password, callback) => {
   const salt = crypto.randomBytes(saltLength);
-  
-  crypto.pbkdf2(password, salt, iterations, keyLength, 'RSA-SHA512', (err, hash) =>
-    callback(salt, hash.toString('hex'))
-  );
+
+  crypto.pbkdf2(password, salt, iterations, keyLength, 'RSA-SHA512', (err, hash) => callback(salt, hash.toString('hex')));
 };
 
-AccountSchema.statics.authenticate = (username, password, callback) => 
-AccountModel.findByUsername(username, (err, doc) => {
+// u = username
+// p = password
+// c = callback
+// ESLINT was messing this up for some reason
+AccountSchema.statics.authenticate = (u, p, c) => AccountModel.findByUsername(u, (err, doc) => {
   if (err) {
-    return callback(err);
+    return c(err);
   }
-  
+
   if (!doc) {
-    return callback();
+    return c();
   }
-  
-  return validatePassword(doc, password, (result) => {
-    if(result === true) {
-      return callback(null, doc);
+
+  return validatePassword(doc, p, (result) => {
+    if (result === true) {
+      return c(null, doc);
     }
-    
-    return callback();
+
+    return c();
   });
 });
 

@@ -32,17 +32,19 @@ html, body {
 . { grid-area: ; }
 
 div.nav-menu {
-  padding-bottom: 7px;
+  padding: 5px 0px 5px 0px;
   margin: 4px;
+  font-family: 'Comfortaa', cursive;
 }
 
 div.nav-menu a {
   color: black;
   text-decoration: none;
   padding: 7px;
+  justify-content: center;
 }
 
-div.nav-menu a:hover {
+div.nav-menu:hover {
   background-color: #4c6394;
 }
 
