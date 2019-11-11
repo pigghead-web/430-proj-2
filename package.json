@@ -29,7 +29,7 @@
   },
   "scripts": {
     "test": "node ./server/app.js",
-    "nodemon": "nodemon --watch ./server ./server/app.js"
+    "nodemon": "nodemon -e js,html,handlebars,css --watch ./hosted --watch ./server ./server/app.js"
   },
   "repository": {
     "type": "git",

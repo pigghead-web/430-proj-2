@@ -21,7 +21,7 @@ const AccountSchema = new mongoose.Schema({
   },
   
   salt: {
-    type: buffer,
+    type: Buffer,
     required: true,
   },
   
@@ -70,7 +70,7 @@ AccountSchema.statics.generateHash = (password, callback) => {
   );
 };
 
-AccountSchema.statis.authenticate = (username, password, callback) => 
+AccountSchema.statics.authenticate = (username, password, callback) => 
 AccountModel.findByUsername(username, (err, doc) => {
   if (err) {
     return callback(err);

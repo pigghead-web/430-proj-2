@@ -50,7 +50,7 @@ const router = require('./router.js');
 const app = express();
 
 // Add /assets middleware layer
-app.use('/assets', express.static(path.resolve(`${__dirname}/../hosted/img/favicon.png`)));
+app.use('/assets', express.static(path.resolve(`${__dirname}/../hosted/`)));
 
 // Add favicon middleware layer
 // * Favicon is used for creating small icons in the address bar/tab
