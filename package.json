@@ -46,10 +46,7 @@
     "nodemon": "nodemon -e js,html,handlebars,css --watch ./hosted --watch ./server ./server/app.js",
     "buildLoginBundle": "babel ./client/login ./client/helper --presets react --out-file ./hosted/loginBundle.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pigghead-web/430-proj-2.git"
-  },
+  "repository": "git+https://github.com/pigghead-web/430-proj-2.git",
   "author": "JUSTIN ARMSTRONG",
   "license": "UNLICENSED",
   "bugs": {
