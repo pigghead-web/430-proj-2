@@ -73,9 +73,37 @@ const signup = (req, res) => {
     const savePromise = newAccount.save();
     
     savePromise.then(() => {
-      console.log()
+      request.session.account = Account.AccountModel.toAPI(newAccount);
+      return res.json({ redirect: '/inPage' });
     })
+    
+    // If there is a problem with our Promise
+    savePromise.catch((err) => {
+      console.log(err);
+      
+      if (err.code === 11000) {  // same username
+        return response.status(400).json({ error: 'Username already taken' });
+      }
+      
+      return response.status(400).json({ error: 'An unknown error occured' });
+    });
   });
+};
+
+const getToken = (req, res) => {
+  const request = req;
+  const response = res;
+  
+  const csrfToken = {
+    csrfToken: request.csrfToken();
+  };
+  
+  response.json(csrfToken);
 }
 
 // - EXPORTS -
+module.exports.loginPage = loginPage;
+module.exports.logout = logout;
+module.exports.login = login;
+module.exports.signup = signup;
+module.exports.getToken = getToken;
