@@ -23,14 +23,12 @@ const LoginWindow = (props) => {
           method="POST"
           className="mainForm">
           
-      <label htmlFor="username">Username: </label>
-      <input id="user" type="text" />
+      <input id="user" type="text" placeholder="username" />
       
-      <label htmlFor="pass">Password: </label>
-      <input id="pass" type="text" />
+      <input id="pass" type="password" placeholder="password" />
       
       <input type="hidden" name="_csrf" value={props.csrf} />
-      <input className="formSubmit" type="submit" value="Sign In"/>
+      <input id="loginFormSubmit" className="formSubmit" type="submit" value="Sign In"/>
     </form>
   );
 }

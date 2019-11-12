@@ -39,8 +39,10 @@
   "scripts": {
     "pretest": "eslint ./server --fix",
     "test": "echo \"Tests Complete\"",
+    "start": "node ./server/app.js",
+    "watchLoginBundle": "babel --watch ./client/login ./client/helper --presets @babel/react --out-file ./hosted/loginBundle.js",
     "nodemon": "nodemon -e js,html,handlebars,css --watch ./hosted --watch ./server ./server/app.js",
-    "buildLoginBundle": "babel ./client/login ./client/helper --presets react --out-file ./hosted/loginBundle.js"
+    "buildLoginBundle": "babel ./client/login ./client/helper --presets @babel/react --out-file ./hosted/loginBundle.js"
   },
   "repository": "git+https://github.com/pigghead-web/430-proj-2.git",
   "author": "JUSTIN ARMSTRONG",
