@@ -6,12 +6,11 @@ const mid = require('./middleware');
 // - CONNECTIONS -
 const router = (app) => {
   // /
-  app.get('/', (req, res) => {
-    res.render('./login.handlebars');
-  });
+  app.get('/', controller.Account.loginPage);
 
   // Login
-  app.get('/login', controller.Account.loginPage);
+  app.get('/login', mid.requiresLogout, controller.Account.loginPage);
+  app.post('/login', controller.Account.login);
 
   // Signup
   app.get('/getToken', controller.Account.getToken);
@@ -19,6 +18,10 @@ const router = (app) => {
 
   // getToken
   app.get('/getToken', mid.requiresSecure, controller.Account.getToken);
+  
+  // Construction
+  // This will be a temporary path to reflect that this is still under construction
+  app.get('/construction', mid.requiresLogin);
 };
 
 module.exports = router;

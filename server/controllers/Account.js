@@ -4,7 +4,7 @@ const models = require('../models');
 
 // - VARIABLES, CONSTANTS -
 // pull in the account model
-const { Account } = models;
+const Account = models.Account;
 
 // - RENDER FUNCTIONS -
 const loginPage = (req, res) => {
@@ -74,7 +74,7 @@ const signup = (req, res) => {
 
     savePromise.then(() => {
       request.session.account = Account.AccountModel.toAPI(newAccount);
-      return res.json({ redirect: '/inPage' });
+      return res.json({ redirect: '/construction' });
     });
 
     // If there is a problem with our Promise

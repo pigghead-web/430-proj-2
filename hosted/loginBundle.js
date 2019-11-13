@@ -74,14 +74,17 @@ var SignupWindow = function SignupWindow(props) {
   }, React.createElement("input", {
     id: "user",
     type: "text",
+    name: "username",
     placeholder: "username"
   }), React.createElement("input", {
     id: "pass",
     type: "password",
+    name: "pass",
     placeholder: "password"
   }), React.createElement("input", {
     id: "pass2",
     type: "password",
+    name: "pass2",
     placeholder: "re-type password"
   }), React.createElement("input", {
     type: "hidden",
@@ -150,7 +153,7 @@ var sendAjax = function sendAjax(type, action, data, success) {
     dataType: "json",
     success: success,
     error: function error(xhr, status, _error) {
-      console.log(xhr.responseText);
+      console.log(_error);
     }
   });
 };

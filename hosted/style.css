@@ -62,15 +62,6 @@ input#user {
   transition: background-color 0.1s ease
 }
 
-input#user:hover {
-  background-color: #f1f1f1;
-}
-
-input#user:focus {
-  background: none;
-  outline: none;
-}
-
 input#pass, input#pass2 {
   -webkit-appearance: none;
   font-size: 16px;
@@ -83,12 +74,12 @@ input#pass, input#pass2 {
   transition: background-color 0.1s ease
 }
 
-input#pass:hover, #pass2:hover {
+input#user:hover, input#pass:hover, #pass2:hover {
   background-color: #f1f1f1;
 }
 
-input#pass:focus {
-  background: none;
+input#pass:focus, input#pass2:focus, input#user:focus {
+  background: #f1f1f1;
   outline: none;
 }
 
@@ -99,8 +90,12 @@ input#loginFormSubmit, #signupFormSubmit {
   font-family: 'Comfortaa', cursive;
 }
 
-input#loginFormSubmit:hover {
+input#loginFormSubmit:hover, #signupFormSubmit:hover {
   cursor: pointer;
+}
+
+#loginFormSubmit:focus, #signupFormSubmit:focus {
+  outline: none;
 }
 
 .Content { 
