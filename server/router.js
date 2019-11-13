@@ -11,11 +11,11 @@ const router = (app) => {
   });
 
   // Login
-  app.get('/login', (req, res) => {
-    res.render('./login.handlebars');
-  });
+  app.get('/login', controller.Account.loginPage);
 
   // Signup
+  app.get('/getToken', controller.Account.getToken);
+  app.post('/signup', mid.requiresLogout, controller.Account.signup);
 
   // getToken
   app.get('/getToken', mid.requiresSecure, controller.Account.getToken);

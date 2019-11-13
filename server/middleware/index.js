@@ -11,7 +11,7 @@ const requiresLogin = (req, res, next) => {
 // If we are logged out, keep us where we need to be
 const requiresLogout = (req, res, next) => {
   if (!req.session.account) {
-    res.redirect('/inPage');
+    res.redirect('/');
   }
 
   return next();

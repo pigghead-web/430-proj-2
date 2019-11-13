@@ -10,7 +10,7 @@ html, body {
   display: grid;
   grid-template-columns: 0.5fr 1fr 1fr 1fr;
   grid-template-rows: 0.25fr 1fr 1fr;
-  grid-template-areas: "Login Login Login Login" 
+  grid-template-areas: "Navigation Login Login Login" 
                        "Navigation Content Content Content" 
                        "Navigation Content Content Content";
   min-height: 100vh;
@@ -71,7 +71,7 @@ input#user:focus {
   outline: none;
 }
 
-input#pass {
+input#pass, input#pass2 {
   -webkit-appearance: none;
   font-size: 16px;
   background-color: inherit;
@@ -83,7 +83,7 @@ input#pass {
   transition: background-color 0.1s ease
 }
 
-input#pass:hover {
+input#pass:hover, #pass2:hover {
   background-color: #f1f1f1;
 }
 
@@ -92,10 +92,15 @@ input#pass:focus {
   outline: none;
 }
 
-input#loginFormSubmit {
+input#loginFormSubmit, #signupFormSubmit {
   -webkit-appearance: none;
   border: 0;
   padding: 5px;
+  font-family: 'Comfortaa', cursive;
+}
+
+input#loginFormSubmit:hover {
+  cursor: pointer;
 }
 
 .Content { 
