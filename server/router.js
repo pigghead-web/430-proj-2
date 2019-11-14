@@ -19,6 +19,11 @@ const router = (app) => {
   // getToken
   app.get('/getToken', mid.requiresSecure, controller.Account.getToken);
   
+  // Game
+  app.get('/game', (req, res) => {
+    res.render('./app.handlebars', { csrfToken: req.csrfToken() });
+  });
+  
   // Construction
   // This will be a temporary path to reflect that this is still under construction
   app.get('/construction', mid.requiresLogin);
