@@ -55,7 +55,7 @@ const updateTotalClicks = () => {
 // - GAME SCREEN -
 const GameScreen = (props) => {
   return (  // JSX return
-    <button>Click!</button>
+    <div id="gameAreaWrapper"></div>
   );
 }
 

@@ -14,7 +14,7 @@ const router = (app) => {
 
   // Signup
   app.get('/getToken', controller.Account.getToken);
-  app.post('/signup', mid.requiresLogout, controller.Account.signup);
+  app.post('/signup', controller.Account.signup);
 
   // getToken
   app.get('/getToken', mid.requiresSecure, controller.Account.getToken);
@@ -23,6 +23,9 @@ const router = (app) => {
   app.get('/game', (req, res) => {
     res.render('./app.handlebars', { csrfToken: req.csrfToken() });
   });
+  
+  // Logout
+  app.get('/logout', mid.requiresLogin, controller.Account.logout);
   
   // Construction
   // This will be a temporary path to reflect that this is still under construction

@@ -7,9 +7,9 @@ var handleLogin = function handleLogin(e) {
   if ($('#user').val() == '' || $('#pass').val() == '') {
     console.log("Both fields are required");
     return false;
-  }
+  } //console.log($('#input[name=_csrf]').val());
 
-  console.log($('#input[name=_csrf]').val());
+
   sendAjax('POST', $('#loginForm').attr('action'), $('#loginForm').serialize(), redirect);
   return false;
 };
@@ -45,10 +45,12 @@ var LoginWindow = function LoginWindow(props) {
   }, React.createElement("input", {
     id: "user",
     type: "text",
+    name: "username",
     placeholder: "username"
   }), React.createElement("input", {
     id: "pass",
     type: "password",
+    name: "pass",
     placeholder: "password"
   }), React.createElement("input", {
     type: "hidden",
@@ -58,7 +60,7 @@ var LoginWindow = function LoginWindow(props) {
     id: "loginFormSubmit",
     className: "formSubmit",
     type: "submit",
-    value: "Sign In"
+    value: "sign in"
   }));
 }; // Signup
 
@@ -94,7 +96,7 @@ var SignupWindow = function SignupWindow(props) {
     id: "signupFormSubmit",
     className: "formSubmit",
     type: "submit",
-    value: "Sign Up"
+    value: "sign up"
   }));
 }; // Create windows
 // Login
@@ -153,7 +155,7 @@ var sendAjax = function sendAjax(type, action, data, success) {
     dataType: "json",
     success: success,
     error: function error(xhr, status, _error) {
-      console.log(_error);
+      console.log(xhr.responseText);
     }
   });
 };

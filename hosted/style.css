@@ -3,25 +3,31 @@ html, body {
   height: 100%;
   margin: 0px;
   padding: 0px;
-  background-color: #f4f4f4;
+  background-color: #F5EFED;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: 0.5fr 1fr 1fr 1fr;
-  grid-template-rows: 0.25fr 1fr 1fr;
-  grid-template-areas: "Navigation Login Login Login" 
-                       "Navigation Content Content Content" 
-                       "Navigation Content Content Content";
+  grid-template-columns: 0.5fr 1fr 1fr 0.5fr;
+  grid-template-rows: 0.11fr 1fr 1fr 0.3fr;
+  grid-template-areas: "Navigation Navigation Navigation Navigation" 
+                       "mainContent mainContent mainContent sideContent" 
+                       "mainContent mainContent mainContent sideContent"
+                       "Ad Ad Ad sideContent";
   min-height: 100vh;
 }
 
 .Navigation { 
   grid-area: Navigation;
-  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  float: right;
+  background-color: #273043;
+  border-bottom: 6px solid #ECA400;
 }
 
-.Login {
+.Header {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -29,48 +35,59 @@ html, body {
   grid-area: Login;
 }
 
+.mainContent {
+  grid-area: mainContent;
+  background-color: #F5EFED;
+}
+
+.sideContent {
+  grid-area: sideContent;
+}
+
+.Ad {
+  grid-area: Ad;
+  border-top: 3px solid black;
+}
+
 . { grid-area: ; }
 
 div.nav-menu {
-  padding: 5px 0px 5px 0px;
+  padding: 10px 5px 5px 5px;
   margin: 4px;
   font-family: 'Comfortaa', cursive;
-  transition: background-color 0.1s ease;
 }
 
 div.nav-menu a {
-  color: inherit;
+  color: #F5EFED;
   text-decoration: none;
   padding: 7px;
   justify-content: center;
+  transition: color 0.3s ease;
 }
 
-div.nav-menu:hover {
-  color: aquamarine;
-  background-color: #4c6394;
+div.nav-menu a:hover {
+  color: #06A77D;
 }
 
-input#user {
+/***************/
+/* INPUT FORMS */
+/***************/
+form#signupForm, form#loginForm {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+input#user, input#pass, input#pass2 {
   -webkit-appearance: none;
   font-size: 16px;
   background-color: inherit;
   border: 0;
-  border-bottom: 1.7px solid #cccccc;
+  border-bottom: 1px solid #3A405A;
   font-family: 'Comfortaa', cursive;
-  margin: 12px 12px 0px 12px;
+  margin: 12px 12px 12px 12px;
   padding: 5px;
-  transition: background-color 0.1s ease
-}
-
-input#pass, input#pass2 {
-  -webkit-appearance: none;
-  font-size: 16px;
-  background-color: inherit;
-  border: 0;
-  border-bottom: 1.7px solid #cccccc;
-  font-family: 'Comfortaa', cursive;
-  margin: 12px 12px 0px 12px;
-  padding: 5px;
+  width: 25%;
   transition: background-color 0.1s ease
 }
 
@@ -78,24 +95,27 @@ input#user:hover, input#pass:hover, #pass2:hover {
   background-color: #f1f1f1;
 }
 
-input#pass:focus, input#pass2:focus, input#user:focus {
+input#user:focus, input#pass:focus, input#pass2:focus {
   background: #f1f1f1;
   outline: none;
 }
 
-input#loginFormSubmit, #signupFormSubmit {
+input#loginFormSubmit, input#signupFormSubmit {
   -webkit-appearance: none;
   border: 0;
   padding: 5px;
   font-family: 'Comfortaa', cursive;
+  transition: background-color 0.3s ease;
 }
 
 input#loginFormSubmit:hover, #signupFormSubmit:hover {
   cursor: pointer;
+  background-color: #06A77D;
 }
 
 #loginFormSubmit:focus, #signupFormSubmit:focus {
   outline: none;
+  background-color: #06A77D;
 }
 
 .Content { 

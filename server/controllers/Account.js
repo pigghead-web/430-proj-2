@@ -21,9 +21,10 @@ const login = (req, res) => {
   const request = req;
   const response = res;
 
+  //console.log(request.body.username);
   // request.body.username and .password are both contained in post request when clicking login
   const username = `${request.body.username}`;
-  const password = `${request.body.password}`;
+  const password = `${request.body.pass}`;
 
   // make sure both the username and password were received
   if (!username || !password) {
@@ -38,7 +39,7 @@ const login = (req, res) => {
 
     request.session.account = Account.AccountModel.toAPI(account);
 
-    return response.json({ redirect: '/inPage' });
+    return response.json({ redirect: '/game' });
   });
 };
 
@@ -74,7 +75,7 @@ const signup = (req, res) => {
 
     savePromise.then(() => {
       request.session.account = Account.AccountModel.toAPI(newAccount);
-      return res.json({ redirect: '/construction' });
+      return res.json({ redirect: '/game' });
     });
 
     // If there is a problem with our Promise

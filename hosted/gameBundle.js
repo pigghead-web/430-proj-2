@@ -59,7 +59,9 @@ var updateTotalClicks = function updateTotalClicks() {
 
 var GameScreen = function GameScreen(props) {
   return (// JSX return
-    React.createElement("button", null, "Click!")
+    React.createElement("div", {
+      id: "gameAreaWrapper"
+    })
   );
 }; // - SETUP -
 
@@ -95,7 +97,7 @@ var sendAjax = function sendAjax(type, action, data, success) {
     dataType: "json",
     success: success,
     error: function error(xhr, status, _error) {
-      console.log(_error);
+      console.log(xhr.responseText);
     }
   });
 };

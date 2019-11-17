@@ -8,8 +8,8 @@ const handleLogin = (e) => {
     return false;
   }
   
-  console.log($('#input[name=_csrf]').val());
-  
+  //console.log($('#input[name=_csrf]').val());
+
   sendAjax('POST', $('#loginForm').attr('action'), $('#loginForm').serialize(), redirect);
   
   return false;
@@ -45,12 +45,12 @@ const LoginWindow = (props) => {
           method="POST"
           className="mainForm">
           
-      <input id="user" type="text" placeholder="username" />
+      <input id="user" type="text" name="username" placeholder="username" />
       
-      <input id="pass" type="password" placeholder="password" />
+      <input id="pass" type="password" name="pass" placeholder="password" />
       
       <input type="hidden" name="_csrf" value={props.csrf} />
-      <input id="loginFormSubmit" className="formSubmit" type="submit" value="Sign In" />
+      <input id="loginFormSubmit" className="formSubmit" type="submit" value="sign in" />
     </form>
   );
 }
@@ -67,7 +67,7 @@ const SignupWindow = (props) => {
       <input id="pass" type="password" name="pass" placeholder="password" />
       <input id="pass2" type="password" name="pass2" placeholder="re-type password" />
       <input type="hidden" name="_csrf" value={props.csrf} />
-      <input id="signupFormSubmit" className="formSubmit" type="submit" value="Sign Up" />
+      <input id="signupFormSubmit" className="formSubmit" type="submit" value="sign up" />
     </form>
   );
 }

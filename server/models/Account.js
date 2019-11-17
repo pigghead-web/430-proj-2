@@ -37,13 +37,13 @@ const AccountSchema = new mongoose.Schema({
 });
 
 // - STATICS / FUNCTIONS -
-AccountSchema.statics.toAPI = (doc) => ({
+AccountSchema.statics.toAPI = doc => ({
   username: doc.username,
   _id: doc._id,
 });
 
 const validatePassword = (doc, password, callback) => {
-  const pass = doc.password;
+  const pass = doc.pass;
 
   return crypto.pbkdf2(password, doc.salt, iterations, keyLength, 'RSA-SHA512', (err, hash) => {
     if (hash.toString('hex') !== pass) {
@@ -74,10 +74,12 @@ AccountSchema.statics.generateHash = (password, callback) => {
 // ESLINT was messing this up for some reason
 AccountSchema.statics.authenticate = (u, p, c) => AccountModel.findByUsername(u, (err, doc) => {
   if (err) {
+    console.log("Error::thrown")
     return c(err);
   }
 
   if (!doc) {
+    console.log("doc::missing")
     return c();
   }
 
