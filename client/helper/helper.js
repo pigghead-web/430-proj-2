@@ -3,6 +3,7 @@ const redirect = (response) => {
 }
 
 const sendAjax = (type, action, data, success) => {
+  //debugger;
   $.ajax({
     cache: false,
     type: type,

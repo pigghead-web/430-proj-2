@@ -10,18 +10,15 @@ const router = (app) => {
 
   // Login
   app.get('/login', mid.requiresLogout, controller.Account.loginPage);
-  app.post('/login', controller.Account.login);
+  app.post('/login', mid.requiresLogout, mid.requiresSecure, controller.Account.login);
 
   // Signup
-  app.get('/getToken', controller.Account.getToken);
-  app.post('/signup', controller.Account.signup);
-
-  // getToken
   app.get('/getToken', mid.requiresSecure, controller.Account.getToken);
+  app.post('/signup', mid.requiresSecure, mid.requiresLogout, controller.Account.signup);
   
   // Game
-  app.get('/game', (req, res) => {
-    res.render('./app.handlebars', { csrfToken: req.csrfToken() });
+  app.get('/game', mid.requiresLogin, (req, res) => {
+    res.render('./game.handlebars', { csrfToken: req.csrfToken() });
   });
   
   // Logout
@@ -29,7 +26,13 @@ const router = (app) => {
   
   // Construction
   // This will be a temporary path to reflect that this is still under construction
-  app.get('/construction', mid.requiresLogin);
+  app.get('/construction', controller.Account.constructionPage);
+  
+  app.get('/*', (req, res) => {
+    res.render('./construction.handlebars', { csrfToken: req.csrfToken() });
+  });
+  
+  //app.use((req, res))
 };
 
 module.exports = router;

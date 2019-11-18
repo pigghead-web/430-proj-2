@@ -11,6 +11,10 @@ const loginPage = (req, res) => {
   res.render('login', { csrfToken: req.csrfToken() });
 };
 
+const constructionPage = (req, res) => {
+  res.render('construction', { csrfToken: req.csrfToken() });
+}
+
 // When logging out, redirect us to the main page
 const logout = (req, res) => {
   req.session.destroy();
@@ -22,7 +26,7 @@ const login = (req, res) => {
   const response = res;
 
   //console.log(request.body.username);
-  // request.body.username and .password are both contained in post request when clicking login
+  // request.body.username and .pass are both contained in post request when clicking login
   const username = `${request.body.username}`;
   const password = `${request.body.pass}`;
 
@@ -104,6 +108,7 @@ const getToken = (req, res) => {
 
 // - EXPORTS -
 module.exports.loginPage = loginPage;
+module.exports.constructionPage = constructionPage;
 module.exports.logout = logout;
 module.exports.login = login;
 module.exports.signup = signup;

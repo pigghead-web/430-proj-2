@@ -43,8 +43,8 @@ AccountSchema.statics.toAPI = doc => ({
 });
 
 const validatePassword = (doc, password, callback) => {
-  const pass = doc.pass;
-
+  const pass = doc.password;
+ 
   return crypto.pbkdf2(password, doc.salt, iterations, keyLength, 'RSA-SHA512', (err, hash) => {
     if (hash.toString('hex') !== pass) {
       return callback(false);
@@ -56,7 +56,7 @@ const validatePassword = (doc, password, callback) => {
 
 AccountSchema.statics.findByUsername = (name, callback) => {
   const search = {
-    name,
+    username: name,
   };
 
   return AccountModel.findOne(search, callback);
@@ -82,8 +82,11 @@ AccountSchema.statics.authenticate = (u, p, c) => AccountModel.findByUsername(u,
     console.log("doc::missing")
     return c();
   }
+  
+  //console.log("doc::present");
 
   return validatePassword(doc, p, (result) => {
+    console.log(doc.password)
     if (result === true) {
       return c(null, doc);
     }

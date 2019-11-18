@@ -2,7 +2,7 @@
 // If we aren't logged in, navigate to the default/ main page
 const requiresLogin = (req, res, next) => {
   if (!req.session.account) {
-    res.redirect('/');
+    res.redirect('/game');
   }
 
   return next();
@@ -10,7 +10,8 @@ const requiresLogin = (req, res, next) => {
 
 // If we are logged out, keep us where we need to be
 const requiresLogout = (req, res, next) => {
-  if (!req.session.account) {
+  console.log(req.session);
+  if (req.session.account) {
     res.redirect('/');
   }
 
