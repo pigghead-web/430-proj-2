@@ -68,6 +68,17 @@ AccountSchema.statics.generateHash = (password, callback) => {
   crypto.pbkdf2(password, salt, iterations, keyLength, 'RSA-SHA512', (err, hash) => callback(salt, hash.toString('hex')));
 };
 
+AccountSchema.statics.changePassword = (newPassword, callback) => {
+  return AccountModel.findOneAndUpdate({password: newPassword}, {new: true}, (err, doc) =>{
+    if(err) {
+      console.log("ERROR::FAILED_TO_UPDATE")
+      console.log(err);
+    }
+    
+    console.log(doc);
+  });
+};
+
 // u = username
 // p = password
 // c = callback

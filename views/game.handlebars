@@ -14,9 +14,14 @@
 <body>
   <div class="grid-container">
     <div class="Navigation">
+     {{ #if user }}
+       <h3>{{ this.name }}</h3>
+     {{ else }}
+       <h3>Welcome</h3>
+     
       <div class="nav-menu"><a href="/logout" id="signoutButton">signout</a></div>
       <div class="nav-menu"><a id="leaderboardButton" href="/leaderboard">leaderboard</a></div>
-      <div class="nav-menu"><a href="/account" id="accountButton"></a></div>
+      <div class="nav-menu"><a href="/account" id="accountButton">account</a></div>
     </div>
     
     <div class="Login">

@@ -9,12 +9,12 @@ const router = (app) => {
   app.get('/', controller.Account.loginPage);
 
   // Login
-  app.get('/login', mid.requiresLogout, controller.Account.loginPage);
-  app.post('/login', mid.requiresLogout, mid.requiresSecure, controller.Account.login);
+  app.get('/login', controller.Account.loginPage);
+  app.post('/login', controller.Account.login);
 
   // Signup
-  app.get('/getToken', mid.requiresSecure, controller.Account.getToken);
-  app.post('/signup', mid.requiresSecure, mid.requiresLogout, controller.Account.signup);
+  app.get('/getToken', controller.Account.getToken);
+  app.post('/signup', controller.Account.signup);
   
   // Game
   app.get('/game', mid.requiresLogin, (req, res) => {
@@ -22,7 +22,7 @@ const router = (app) => {
   });
   
   // Logout
-  app.get('/logout', mid.requiresLogin, controller.Account.logout);
+  app.get('/logout', controller.Account.logout);
   
   // Construction
   // This will be a temporary path to reflect that this is still under construction

@@ -1,3 +1,15 @@
+/**
+  COLOR PALLETTE: https://coolors.co/813405-f5efed-06a77d-273043-3a405a
+
+  687091 - Dark Blue-Gray
+  813405 - Smoky Topaz
+  F5EFED - Isabelline
+  06A77D - Munsell Green
+  273043 - Gunmetal
+  3A405A - Charcoal
+  ECA400 - Web Orange
+**/
+
 html, body {
   width: 100%;
   height: 100%;
@@ -6,6 +18,12 @@ html, body {
   background-color: #F5EFED;
 }
 
+/********/
+/* GRID */
+/********/
+/**
+  CREDIT: https://grid.layoutit.com/
+**/
 .grid-container {
   display: grid;
   grid-template-columns: 0.5fr 1fr 1fr 0.5fr;
@@ -52,8 +70,8 @@ html, body {
 . { grid-area: ; }
 
 div.nav-menu {
-  padding: 10px 5px 5px 5px;
-  margin: 4px;
+  padding: 10px 0px 5px 5px;
+  margin: 4px 0px 4px 4px;
   font-family: 'Comfortaa', cursive;
 }
 
@@ -115,10 +133,83 @@ input#loginFormSubmit:hover, #signupFormSubmit:hover {
 
 #loginFormSubmit:focus, #signupFormSubmit:focus {
   outline: none;
-  background-color: #06A77D;
 }
 
 .Content { 
   grid-area: Content; 
   height: 100%;
+}
+
+/************/
+/* GAME CSS */
+/************/
+button#clickForScore {
+  -webkit-appearance: none;
+  background-color: #273043;
+  color: #F5EFED;
+  border: 0;
+  width: 65px;
+  height: 40px;
+  font-family: 'Comfortaa', cursive;
+}
+
+button#clickForScore:hover {
+  color: #06A77D;
+}
+
+button#clickForScore:focus {
+  outline: none;
+}
+
+/***************/
+/* LEADERBOARD */
+/***************/
+/**
+  CREDIT TO https://www.tablesgenerator.com/html_tables#
+**/
+.tg {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-color: #9ABAD9;
+}
+.tg td {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  padding: 10px 5px;
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+  word-break: normal;
+  border-color: #9ABAD9;
+  color: #444;
+  background-color: #EBF5FF;
+}
+.tg th {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  padding: 10px 5px;
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+  word-break: normal;
+  border-color: #9ABAD9;
+  color: #fff;
+  background-color: #409cff;
+}
+
+.tg .tg-lx26 {
+  font-size: 18px;
+  background-color: #273043;
+  border-color: inherit;
+  text-align: left;
+  vertical-align: top;
+}
+
+.tg .tg-a79m {
+  font-size: 16px;
+  background-color: #687091;
+  border-color: inherit;
+  text-align: left;
+  vertical-align: top
 }
