@@ -4,7 +4,7 @@ const models = require('../models');
 
 // - VARIABLES, CONSTANTS -
 // pull in the account model
-const Account = models.Account;
+const { Account } = models;
 
 // - RENDER FUNCTIONS -
 const loginPage = (req, res) => {
@@ -13,7 +13,7 @@ const loginPage = (req, res) => {
 
 const constructionPage = (req, res) => {
   res.render('construction', { csrfToken: req.csrfToken() });
-}
+};
 
 // When logging out, redirect us to the main page
 const logout = (req, res) => {
@@ -25,7 +25,7 @@ const login = (req, res) => {
   const request = req;
   const response = res;
 
-  //console.log(request.body.username);
+  // console.log(request.body.username);
   // request.body.username and .pass are both contained in post request when clicking login
   const username = `${request.body.username}`;
   const password = `${request.body.pass}`;
@@ -41,7 +41,8 @@ const login = (req, res) => {
       return response.status(401).json({ error: 'Incorrect username or password' });
     }
 
-    request.session.account = Account.AccountModel.toAPI(account);
+    // Attach account to our session
+    req.session.account = Account.AccountModel.toAPI(account);
 
     return response.json({ redirect: '/game' });
   });

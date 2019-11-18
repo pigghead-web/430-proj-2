@@ -87,6 +87,14 @@ div.nav-menu a:hover {
   color: #06A77D;
 }
 
+div.Navigation h3 {
+  color: #F5EFED;
+  text-decoration: none;
+  font-family: 'Comfrotaa', cursive;
+  margin, padding: 0px;
+  justify-content: center;
+}
+
 /***************/
 /* INPUT FORMS */
 /***************/

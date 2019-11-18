@@ -37,14 +37,14 @@ const AccountSchema = new mongoose.Schema({
 });
 
 // - STATICS / FUNCTIONS -
-AccountSchema.statics.toAPI = doc => ({
+AccountSchema.statics.toAPI = (doc) => ({
   username: doc.username,
   _id: doc._id,
 });
 
 const validatePassword = (doc, password, callback) => {
   const pass = doc.password;
- 
+
   return crypto.pbkdf2(password, doc.salt, iterations, keyLength, 'RSA-SHA512', (err, hash) => {
     if (hash.toString('hex') !== pass) {
       return callback(false);
@@ -69,13 +69,19 @@ AccountSchema.statics.generateHash = (password, callback) => {
 };
 
 AccountSchema.statics.changePassword = (newPassword, callback) => {
-  return AccountModel.findOneAndUpdate({password: newPassword}, {new: true}, (err, doc) =>{
-    if(err) {
-      console.log("ERROR::FAILED_TO_UPDATE")
+  AccountModel.findOneAndUpdate({ p: newPassword }, { new: true }, (err, doc) => {
+    if (err) {
+      console.log('ERROR::FAILED_TO_UPDATE');
       console.log(err);
+      return callback(err);
     }
-    
-    console.log(doc);
+
+    if (!doc) {
+      console.log('ERROR::DOC_MISSING');
+      return callback();
+    }
+
+    return callback(true);
   });
 };
 
@@ -85,19 +91,19 @@ AccountSchema.statics.changePassword = (newPassword, callback) => {
 // ESLINT was messing this up for some reason
 AccountSchema.statics.authenticate = (u, p, c) => AccountModel.findByUsername(u, (err, doc) => {
   if (err) {
-    console.log("Error::thrown")
+    console.log('Error::thrown');
     return c(err);
   }
 
   if (!doc) {
-    console.log("doc::missing")
+    console.log('doc::missing');
     return c();
   }
-  
-  //console.log("doc::present");
+
+  // console.log("doc::present");
 
   return validatePassword(doc, p, (result) => {
-    console.log(doc.password)
+    console.log(doc.password);
     if (result === true) {
       return c(null, doc);
     }

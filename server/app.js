@@ -106,7 +106,7 @@ app.use((err, req, res, next) => {
 // Handle the possible endpoints
 router(app);
 
-app.listen(port, (err) => {  // Start the server
+app.listen(port, (err) => { // Start the server
   if (err) {
     throw err;
   }

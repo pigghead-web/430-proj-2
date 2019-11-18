@@ -69,19 +69,32 @@ const handleReset = (e) => {
     return false;
   }
   
-  sendAjax('POST', $('#resetForm')).attr('action'), $('#resetForm').serialize(), redirect)
+  sendAjax('POST', $('#resetForm').attr('action'), $('#resetForm').serialize(), redirect);
   
   return false;
 }
 
 // - GAME SCREEN -
-const GameScreen = (props) => {
-  return (  // JSX return
-    <div id="gameAreaWrapper">
-      <h2 id="totalClicks" className="totalClicks">0</h2>
-      <button id="clickForScore" className="btn btn-default">click</button>
-    </div>
-  );
+//const GameScreen = (props) => {
+//  return (  // JSX return
+//    <div id="gameAreaWrapper">
+//      <h2 id="totalClicks" className="totalClicks">0</h2>
+//      <button id="clickForScore" className="btn btn-default">click</button>
+//      <input type="hidden" name="_csrf" value={props.csrf}/>
+//    </div>
+//  );
+//}
+
+// Make the game page and retrieve the ClickModel associated with each player
+const gamePage = (res, req) => {
+  ClickModel.ClickModel.findByOwner(req.session._id, (err, docs) => {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({ error: "ERROR" })
+    }
+    
+    return res.render('game', { score: docs });
+  });
 }
 
 // reset password
@@ -135,7 +148,18 @@ const createResetScreen = (csrf) => {
 }
 
 const createLeaderboardScreen = (csrf) => {
+  ReactDOM.render(
+    <LeaderboardScreen csrf={csrf} />,
+    document.querySelector('#content')
+  );
+}
+
+const setup = (csrf) => {
+  //const accountButton = document.querySelector('#');
   
+  //createGameScreen(csrf);
+  
+  console.log("setup initiated");
 }
 
 // - RDY -
